@@ -2,7 +2,7 @@ package othello;
 
 public class Board {
 
-    private final int boardSize = 8;
+    private static final int BOARD_SIZE = 8;
 
     private char[][] board;
 
@@ -13,9 +13,9 @@ public class Board {
     private static final char EMPTY = ' ';
 
     public Board(char p1Symbol, char p2Symbol){
-        board = new char[boardSize][boardSize];
-        for(int i = 0; i < boardSize; i++){
-            for(int j = 0; j < boardSize; j++){
+        board = new char[BOARD_SIZE][BOARD_SIZE];
+        for(int i = 0; i < BOARD_SIZE; i++){
+            for(int j = 0; j < BOARD_SIZE; j++){
                 board[i][j] = EMPTY;
             }
         }
@@ -28,7 +28,7 @@ public class Board {
 
     public void initializeBoard(){
         //othello game starts with 2 pieces of each player in the centre diagonally
-        int mid = boardSize / 2;
+        int mid = BOARD_SIZE / 2;
         board[mid - 1][mid - 1] = p2Symbol;
         board[mid - 1][mid] = p1Symbol;
         board[mid][mid - 1] = p1Symbol;
@@ -37,7 +37,39 @@ public class Board {
 
     public boolean isValidMove (int row, int column, char symbol) {
         // A valid move in Othello is one which can turn opponent pieces to own symbol
-        return false; // to be implemented
+        
+        //Boundary check;
+        if(row < 0 || column < 0 || row >= BOARD_SIZE || column >= BOARD_SIZE) {
+            return false;
+        }
+        //Empty check
+        if(board[row][column] != EMPTY) {
+            return false;
+        }
+
+        //Direction loop
+        for (int i = 0; i < DIRECTIONS.length; i++) {
+            int rowStep = DIRECTIONS[i][0];
+            int colStep = DIRECTIONS[i][1];
+
+            if(checkDirection(row, column, rowStep, colStep, symbol)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static final int[][] DIRECTIONS = {
+        {0, -1}, {-1, -1}, 
+        {-1, 0}, {-1, 1},
+        {0, 1}, {1, 1}, 
+        {1, 0}, {1, -1}
+    };
+
+    private boolean checkDirection ( int row, int column, int rowStep, int colStep, char symbol) {
+        //logic to be implemented
+        return false;
     }
 
 }
