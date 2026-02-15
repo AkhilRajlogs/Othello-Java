@@ -6,13 +6,13 @@ public class Board {
 
     private char[][] board;
 
-    private char p1Symbol;
+    private char p1Symbol, p2Symbol;
 
     private int count;
 
     private static final char EMPTY = ' ';
 
-    public Board(char p1Symbol){
+    public Board(char p1Symbol, char p2Symbol){
         board = new char[boardSize][boardSize];
         for(int i = 0; i < boardSize; i++){
             for(int j = 0; j < boardSize; j++){
@@ -21,6 +21,18 @@ public class Board {
         }
         //Currently the board assumes a 2 player game with fixed symbols
         this.p1Symbol = p1Symbol;
+        this.p2Symbol = p2Symbol;
+
+        initializeBoard();
+    }
+
+    public void initializeBoard(){
+        //othello game starts with 2 pieces of each player in the centre diagonally
+        int mid = boardSize /2;
+        board[mid - 1][mid - 1] = p2Symbol;
+        board[mid - 1][mid] = p1Symbol;
+        board[mid][mid - 1] = p1Symbol;
+        board[mid][mid] = p2Symbol;
     }
 
 }
