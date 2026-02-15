@@ -19,7 +19,7 @@ public class Board {
                 board[i][j] = EMPTY;
             }
         }
-        //Currently the board assumes a 2 player game with fixed symbols
+        // Currently assumes a 2-player game with fixed symbols
         this.p1Symbol = p1Symbol;
         this.p2Symbol = p2Symbol;
 
@@ -28,11 +28,16 @@ public class Board {
 
     public void initializeBoard(){
         //othello game starts with 2 pieces of each player in the centre diagonally
-        int mid = boardSize /2;
+        int mid = boardSize / 2;
         board[mid - 1][mid - 1] = p2Symbol;
         board[mid - 1][mid] = p1Symbol;
         board[mid][mid - 1] = p1Symbol;
         board[mid][mid] = p2Symbol;
+    }
+
+    public boolean isValidMove (int row, int column, char symbol) {
+        // A valid move in Othello is one which can turn opponent pieces to own symbol
+        return false; // to be implemented
     }
 
 }
