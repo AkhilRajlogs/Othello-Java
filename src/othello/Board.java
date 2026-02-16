@@ -29,15 +29,6 @@ public class Board {
         initializeBoard();
     }
 
-    public void initializeBoard() {
-        // Othello game starts with 2 pieces of each player in the centre diagonally 
-        int mid = BOARD_SIZE / 2;
-        board[mid - 1][mid - 1] = p2Symbol;
-        board[mid - 1][mid] = p1Symbol;
-        board[mid][mid - 1] = p1Symbol;
-        board[mid][mid] = p2Symbol;
-    }
-
     public boolean isValidMove(int row, int column, char symbol) {
         // A valid move in Othello is one which can turn opponent pieces to own symbol 
         
@@ -62,6 +53,33 @@ public class Board {
         }
         
         return false;
+    }
+
+    public boolean makeMove(int row, int column, char symbol) {
+
+        if (!isValidMove(row, column, symbol)) {
+            return false;            
+        }
+
+        board[row][column] = symbol;
+        for(int i = 0; i < DIRECTIONS.length; i++) {
+            int rowStep = DIRECTIONS[i][0];
+            int colStep = DIRECTIONS[i][1];
+
+            if (checkDirection(row, column, rowStep, colStep, symbol)) {
+                flipInDirection(row, column, rowStep, colStep, symbol);
+            }
+        }
+        return true;
+    }
+
+    private void initializeBoard() {
+        // Othello game starts with 2 pieces of each player in the centre diagonally 
+        int mid = BOARD_SIZE / 2;
+        board[mid - 1][mid - 1] = p2Symbol;
+        board[mid - 1][mid] = p1Symbol;
+        board[mid][mid - 1] = p1Symbol;
+        board[mid][mid] = p2Symbol;
     }
 
     private boolean checkDirection(int row, int column, int rowStep, int colStep, char symbol) {
@@ -98,6 +116,10 @@ public class Board {
         
     private boolean isInBounds(int row, int column) {
         return row >= 0 && column >= 0 && row < BOARD_SIZE && column < BOARD_SIZE;
+    }
+
+    private void flipInDirection(int row, int column, int rowStep, int colStep, char symbol) {
+        //to be implemented
     }
 
     private static final int[][] DIRECTIONS = {
