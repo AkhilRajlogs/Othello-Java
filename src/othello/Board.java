@@ -29,6 +29,17 @@ public class Board {
         initializeBoard();
     }
 
+    public void printBoard() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                System.out.print("[" + board[i][j] + "]");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+
     public boolean isValidMove(int row, int column, char symbol) {
         // A valid move in Othello is one which can turn opponent pieces to own symbol 
         
@@ -119,7 +130,16 @@ public class Board {
     }
 
     private void flipInDirection(int row, int column, int rowStep, int colStep, char symbol) {
-        //to be implemented
+        
+        char opponentSymbol = (symbol==p1Symbol) ? p2Symbol : p1Symbol;
+        int currentRow = row + rowStep;
+        int currentCol = column + colStep;
+
+        while (isInBounds(currentRow, currentCol) && board[currentRow][currentCol] == opponentSymbol) {
+            board[currentRow][currentCol] = symbol;
+            currentRow += rowStep;
+            currentCol += colStep;
+        }
     }
 
     private static final int[][] DIRECTIONS = {
