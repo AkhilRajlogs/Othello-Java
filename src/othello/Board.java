@@ -100,7 +100,7 @@ public class Board {
 
     private boolean checkDirection(int row, int column, int rowStep, int colStep, char symbol) {
 
-        char opponentSymbol = (symbol == p1Symbol) ? p2Symbol : p1Symbol;
+        char opponentSymbol = getOpponentSymbol(symbol);
 
         int currentRow = row + rowStep;
         int currentCol = column + colStep;
@@ -136,7 +136,7 @@ public class Board {
 
     private void flipInDirection(int row, int column, int rowStep, int colStep, char symbol) {
         
-        char opponentSymbol = (symbol==p1Symbol) ? p2Symbol : p1Symbol;
+        char opponentSymbol = getOpponentSymbol(symbol);
         int currentRow = row + rowStep;
         int currentCol = column + colStep;
 
@@ -150,6 +150,11 @@ public class Board {
     private boolean isValidSymbol(char symbol) {
         return symbol == p1Symbol || symbol == p2Symbol;
     }
+
+    private char getOpponentSymbol(char symbol) {
+        return (symbol == p1Symbol) ? p2Symbol : p1Symbol;
+    }
+
 
 
     private static final int[][] DIRECTIONS = {
