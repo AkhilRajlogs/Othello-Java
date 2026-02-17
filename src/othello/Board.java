@@ -89,6 +89,24 @@ public class Board {
         return true;
     }
 
+    public boolean hasValidMove(char symbol) {
+
+        if (!isValidSymbol(symbol)) {
+            return false;
+        }
+
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int col = 0; col < BOARD_SIZE; col++) {
+                if (isValidMove(row, col, symbol)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
     private void initializeBoard() {
         // Othello game starts with 2 pieces of each player in the centre diagonally 
         int mid = BOARD_SIZE / 2;
