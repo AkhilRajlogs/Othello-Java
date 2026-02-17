@@ -42,6 +42,11 @@ public class Board {
 
     public boolean isValidMove(int row, int column, char symbol) {
         // A valid move in Othello is one which can turn opponent pieces to own symbol 
+
+        // Symbol check
+        if (!isValidSymbol(symbol)) {
+            return false;
+        }
         
         // Boundary check 
         if (!isInBounds(row, column)) {
@@ -141,6 +146,11 @@ public class Board {
             currentCol += colStep;
         }
     }
+
+    private boolean isValidSymbol(char symbol) {
+        return symbol == p1Symbol || symbol == p2Symbol;
+    }
+
 
     private static final int[][] DIRECTIONS = {
         { 0, -1 }, { -1, -1 },
