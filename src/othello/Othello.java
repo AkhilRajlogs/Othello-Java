@@ -2,14 +2,12 @@ package othello;
 
 public class Othello {
 
-    //create the Board
+    private Board board;
+    private char currentPlayer;
 
-    //Take Player input
-
-    //Take move input(row+column) and validate move
-
-    //Make move+Convert pieces 
-
-    //status
+    public Othello(char p1Symbol, char p2Symbol) {
+        this.board = new Board(p1Symbol, p2Symbol);
+        this.currentPlayer = p1Symbol;
+    }
 
 }
