@@ -12,7 +12,7 @@ public class Othello {
         this.p1Symbol = p1Symbol;
         this.p2Symbol = p2Symbol;
 
-        currentPlayer = p1Symbol;
+        this.currentPlayer = p1Symbol;
 
     }
 
@@ -28,6 +28,23 @@ public class Othello {
         return !board.hasValidMove(p1Symbol) && !board.hasValidMove(p2Symbol);
     }
 
+    public char getWinner() {
+        if (!isGameOver()) {
+            throw new IllegalStateException("Game is not over yet");
+        }
+
+        int p1Count = board.countPieces(p1Symbol);
+        int p2Count = board.countPieces(p2Symbol);
+
+        if (p1Count > p2Count) {
+            return p1Symbol;
+        } else if (p2Count > p1Count) {
+            return p2Symbol;
+        } else {
+            return '\0'; // draw
+        }
+    }
+    
     private void switchPlayer() {
         currentPlayer = (currentPlayer == p1Symbol) ? p2Symbol : p1Symbol;
     }
