@@ -8,8 +8,6 @@ public class Board {
 
     private char p1Symbol, p2Symbol;
 
-    private int count; // Will be used later
-
     private static final char EMPTY = ' ';
 
     public Board(char p1Symbol, char p2Symbol) {
@@ -104,6 +102,23 @@ public class Board {
         }
 
         return false;
+    }
+
+    public int countPieces(char symbol) {
+        if (!isValidSymbol(symbol)) {
+            return -1;
+        }
+
+        int count = 0;
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if (board[i][j] == symbol) {
+                    count++;
+                }
+            }            
+        }
+        return count;
     }
 
 
