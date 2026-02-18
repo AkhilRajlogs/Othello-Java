@@ -44,6 +44,11 @@ public class Othello {
             return '\0'; // draw
         }
     }
+
+    public char getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
     
     private void switchPlayer() {
         currentPlayer = (currentPlayer == p1Symbol) ? p2Symbol : p1Symbol;
