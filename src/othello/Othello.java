@@ -16,6 +16,14 @@ public class Othello {
 
     }
 
+    public boolean playMove(int row, int column) {
+        if (!board.makeMove(row, column, currentPlayer)) {
+            return false;
+        }
+        switchPlayer();
+        return true;
+    }
+
     private void switchPlayer() {
         currentPlayer = (currentPlayer == p1Symbol) ? p2Symbol : p1Symbol;
     }
