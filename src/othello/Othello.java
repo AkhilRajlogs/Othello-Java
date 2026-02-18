@@ -24,6 +24,10 @@ public class Othello {
         return true;
     }
 
+    public boolean isGameOver() {
+        return !board.hasValidMove(p1Symbol) && !board.hasValidMove(p2Symbol);
+    }
+
     private void switchPlayer() {
         currentPlayer = (currentPlayer == p1Symbol) ? p2Symbol : p1Symbol;
     }
