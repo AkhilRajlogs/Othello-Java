@@ -121,6 +121,17 @@ public class Board {
         return count;
     }
 
+    public char[][] getBoardCopy() {
+        char[][] copy = new char[board.length][board[0].length];
+
+        for (int i = 0; i < board.length; i++) {
+            System.arraycopy(board[i], 0, copy[i], 0, board[i].length);
+        }
+
+        return copy;
+
+    }
+
 
     private void initializeBoard() {
         // Othello game starts with 2 pieces of each player in the centre diagonally 

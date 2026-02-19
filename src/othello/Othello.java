@@ -2,7 +2,7 @@ package othello;
 
 public class Othello {
 
-    private Board board;
+    private final Board board;
     private char currentPlayer;
     private final char p1Symbol, p2Symbol;
 
@@ -55,6 +55,10 @@ public class Othello {
 
     public boolean hasValidMove() {
         return board.hasValidMove(currentPlayer);
+    }
+
+    public char[][] getBoardSnapshot() {
+        return board.getBoardCopy();
     }
 
     
