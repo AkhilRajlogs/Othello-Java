@@ -21,6 +21,10 @@ public class Othello {
             return false;
         }
         switchPlayer();
+        //if the next player has no valid move, switch back
+        if (!board.hasValidMove(currentPlayer)) {
+            switchPlayer();
+        }
         return true;
     }
 
