@@ -53,6 +53,10 @@ public class Othello {
         return this.currentPlayer;
     }
 
+    public boolean hasValidMove() {
+        return board.hasValidMove(currentPlayer);
+    }
+
     
     private void switchPlayer() {
         currentPlayer = (currentPlayer == p1Symbol) ? p2Symbol : p1Symbol;
