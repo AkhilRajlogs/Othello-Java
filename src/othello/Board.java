@@ -6,7 +6,7 @@ public class Board {
 
     private char[][] board;
 
-    private char p1Symbol, p2Symbol;
+    private final char p1Symbol, p2Symbol;
 
     private static final char EMPTY = ' ';
 
@@ -28,12 +28,32 @@ public class Board {
     }
 
     public void printBoard() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                System.out.print("[" + board[i][j] + "]");
+        
+        //header row with column headings
+        System.out.print(" ");
+        for (int col = 0; col < BOARD_SIZE; col++) {
+
+            System.out.print(col + " ");
+        }
+        System.out.println();
+
+        //print rows                    
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            //row number
+            System.out.print(row + " ");
+
+            for (int col = 0; col < BOARD_SIZE; col++) {
+
+                char cell = board[row][col];
+                if (cell == EMPTY) {
+                    System.out.print(". ");
+                } else {
+                    System.out.print(cell + " ");
+                }
             }
             System.out.println();
         }
+
         System.out.println();
     }
 
@@ -57,9 +77,9 @@ public class Board {
         }
 
         // Direction loop 
-        for (int i = 0; i < DIRECTIONS.length; i++) {
-            int rowStep = DIRECTIONS[i][0];
-            int colStep = DIRECTIONS[i][1];
+        for (int[] direction : DIRECTIONS) {
+            int rowStep = direction[0];
+            int colStep = direction[1];
 
             if (checkDirection(row, column, rowStep, colStep, symbol)) {
                 return true;
@@ -76,9 +96,9 @@ public class Board {
         }
 
         board[row][column] = symbol;
-        for(int i = 0; i < DIRECTIONS.length; i++) {
-            int rowStep = DIRECTIONS[i][0];
-            int colStep = DIRECTIONS[i][1];
+        for (int[] direction : DIRECTIONS) {
+            int rowStep = direction[0];
+            int colStep = direction[1];
 
             if (checkDirection(row, column, rowStep, colStep, symbol)) {
                 flipInDirection(row, column, rowStep, colStep, symbol);
@@ -125,7 +145,7 @@ public class Board {
         char[][] copy = new char[board.length][board[0].length];
 
         for (int i = 0; i < board.length; i++) {
-            System.arraycopy(board[i], 0, copy[i], 0, board[i].length);
+            System.arraycopy(board[i], 0, copy[i], 0, board[i].length); // Return defensive copy to preserve encapsulation
         }
 
         return copy;
